@@ -22,6 +22,17 @@
 
 
 
+### 各个微服务信息
+
+| 微服务名                              | 实例端口 | 对外接口                                                     |
+| ------------------------------------- | -------- | ------------------------------------------------------------ |
+| msa-wr-city-data-server               | 8081     | `/weather/city`<br/>JSON<br/>`com.yscyber.myspringcloud.projectd.msawrcitydataserver.pojo.JsonDataObject` |
+| msa-wr-weather-data-collection-server | 8083     | 无                                                           |
+| msa-wr-weather-data-server            | 8085     | `/weather/{cityKey}`<br/>JSON<br/>`com.yscyber.myspringcloud.projectd.msawrweatherdataserver.pojo.json.WeatherJsonObject` |
+| msa-wr-report-server                  | 8080     | `/weather/report/{cityKey}`<br/>View                         |
+
+
+
 ### 最终效果
 
 ​	与“单体架构”是一致的。
