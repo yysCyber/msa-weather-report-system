@@ -30,6 +30,7 @@
 | msa-wr-weather-data-collection-server | 8083     | 无                                                           |
 | msa-wr-weather-data-server            | 8085     | `/weather/{cityKey}`<br/>JSON<br/>`com.yscyber.myspringcloud.projectd.msawrweatherdataserver.pojo.json.WeatherJsonObject` |
 | msa-wr-report-server                  | 8080     | `/weather/report/{cityKey}`<br/>View                         |
+| msa-wr                                | 8761     | `http://localhost:8761/eureka`                               |
 
 
 
