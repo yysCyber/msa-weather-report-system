@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>com.yscyber.myspringcloud.projecta</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>weather-web</artifactId>
+
+    <!-- 一定要注意，启动类所在的模块，必须引入其他的所有模块，这样的话，才能进行“包扫描” -->
+    <dependencies>
+
+        <dependency>
+            <groupId>com.yscyber.myspringcloud.projecta</groupId>
+            <artifactId>weather-pojo</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yscyber.myspringcloud.projecta</groupId>
+            <artifactId>weather-service</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yscyber.myspringcloud.projecta</groupId>
+            <artifactId>weather-common</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+    </dependencies>
+
+
+</project>

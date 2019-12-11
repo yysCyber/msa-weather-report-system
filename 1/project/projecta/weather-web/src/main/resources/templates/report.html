@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <title>天气预报</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h3>天气预报</h3>
+            <select class="custom-select" id="selectCityId">
+                <option th:each="city:${cityList}" th:value="${city.cityKey}" th:text="${city.cityName}" th:selected="${city.cityKey eq hasSelectedCityKey}"></option>
+            </select>
+        </div>
+        <div class="row">
+            <h1 class="text-success" th:text="${weather.data.city}"></h1>
+        </div>
+        <div class="row">
+            <p>
+                当前温度：<span th:text="${weather.data.wendu}"></span>
+            </p>
+        </div>
+        <div class="row">
+            <p>
+                温馨提示：<span th:text="${weather.data.ganmao}"></span>
+            </p>
+        </div>
+        <div class="row">
+            <div class="card border-info" th:each="forecast:${weather.data.forecast}">
+                <div class="card-body text-info">
+                    <p class="card-text" th:text="${forecast.date}">日期</p>
+                    <p class="card-text" th:text="${forecast.type}">天气类型</p>
+                    <p class="card-text" th:text="${forecast.high}">最高温度</p>
+                    <p class="card-text" th:text="${forecast.low}">最低温度</p>
+                    <p class="card-text" th:text="${forecast.fengxiang}">风向</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" th:src="@{/report.js}"></script>
+</body>
+</html>
