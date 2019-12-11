@@ -27,7 +27,7 @@
 | 微服务名                              | 实例端口 | 对外接口                                                     |
 | ------------------------------------- | -------- | ------------------------------------------------------------ |
 | msa-wr-city-data-server               | 8081     | `/weather/city`<br/>JSON<br/>`com.yscyber.myspringcloud.projectd.msawrcitydataserver.pojo.JsonDataObject` |
-| msa-wr-weather-data-collection-server | 8083     | 无                                                           |
+| msa-wr-weather-data-collection-server | 8083     | 无（不需要对外提供，负责数据同步到本地的微服务）             |
 | msa-wr-weather-data-server            | 8085     | `/weather/{cityKey}`<br/>JSON<br/>`com.yscyber.myspringcloud.projectd.msawrweatherdataserver.pojo.json.WeatherJsonObject` |
 | msa-wr-report-server                  | 8080     | `/weather/report/{cityKey}`<br/>View                         |
 | msa-wr                                | 8761     | `http://localhost:8761/eureka`                               |

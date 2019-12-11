@@ -16,6 +16,14 @@
 
 ​	从 2 的编写中可以看出，微服务`msa-wr-report-server`需要通过正确的“微服务名”（`@FeignClient`注解中指定）和正确的“请求路径”（`@GetMapping`等注解中指定），但是如果在开发过程中，像“请求路径”这样的稍有变动，在这个小型的“天气预报”系统中可能感觉不到什么，但是在大型系统，真的是“牵一发而动全身”。
 
+```java
+@FeignClient("msa-wr-city-data-server")
+public interface MsaWrCityDataServerClient {
+    @GetMapping("/weather/city")
+    JsonDataObject<City> jsonCity();
+}
+```
+
 ​	为了减少这种情况的发生，保持整个稳定性，于是 Spring Cloud 便开始使用 Zuul 作为“微服务 API 网关”，将提供微服务的 API 进行聚合，使微服务的消费者直接依赖的是 Zuul 网关而不是各种微服务的提供者，也就是说 Zuul 会负责将消费者的请求转发给提供者。
 
 ​	当然，上面只是现阶段能力内对 Zuul 功能的理解，其实，Zuul 还具有像监控、弹性负载等高级功能。
@@ -47,13 +55,14 @@
 
 ### 各个微服务信息
 
-| 微服务名                              | 实例端口 | 对外接口                                                     |
-| ------------------------------------- | -------- | ------------------------------------------------------------ |
-| msa-wr-city-data-server               | 8081     | `/weather/city`<br/>JSON<br/>`com.yscyber.myspringcloud.projectd.msawrcitydataserver.pojo.JsonDataObject` |
-| msa-wr-weather-data-collection-server | 8083     | 无                                                           |
-| msa-wr-weather-data-server            | 8085     | `/weather/{cityKey}`<br/>JSON<br/>`com.yscyber.myspringcloud.projectd.msawrweatherdataserver.pojo.json.WeatherJsonObject` |
-| msa-wr-report-server                  | 8080     | `/weather/report/{cityKey}`<br/>View                         |
-| msa-wr                                |          |                                                              |
+| 微服务名                              | 实例端口/性质                    | 对外接口                                                     |
+| ------------------------------------- | -------------------------------- | ------------------------------------------------------------ |
+| msa-wr-city-data-server               | 8081<br/>Eureka Client           | `/weather/city`<br/>JSON<br/>`com.yscyber.myspringcloud.projectd.msawrcitydataserver.pojo.JsonDataObject` |
+| msa-wr-weather-data-collection-server | 8083<br/>Eureka Client           | 无                                                           |
+| msa-wr-weather-data-server            | 8085<br/>Eureka Client           | `/weather/{cityKey}`<br/>JSON<br/>`com.yscyber.myspringcloud.projectd.msawrweatherdataserver.pojo.json.WeatherJsonObject` |
+| msa-wr-report-server                  | 8080<br/>Eureka Client           | `/weather/report/{cityKey}`<br/>View                         |
+| msa-wr                                | 8761<br/>Eureka Server           | `http://localhost:8761/eureka`                               |
+| msa-wr-gateway                        | 8087<br>Eureka Client & API 网关 | API 聚合<br/>请求转发规则：`/json/city/**`转发给`msa-wr-city-data-server`微服务，获取“城市”数据的“请求路径”即变为`/json/city/weather/city`（原“请求路径”加上“请求转发规则”）；`/json/weather/**`转发给`msa-wr-weather-data-server`微服务，获取“对应城市的天气”数据的请求数据即变为`/json/weather/weather/{cityKey}`（道理同上） |
 
 
 

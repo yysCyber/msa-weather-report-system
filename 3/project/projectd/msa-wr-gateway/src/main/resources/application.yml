@@ -1,0 +1,20 @@
+server:
+  port: 8087
+
+spring:
+  application:
+    name: msa-wr-gateway
+
+eureka:
+  client:
+    service-url.defaultZone: http://localhost:8761/eureka/
+
+# 配置 Zuul 请求转发规则
+zuul:
+  routes:
+    msa-wr-city-data-server:
+      path: /json/city/**
+      serviceId: msa-wr-city-data-server
+    msa-wr-weather-data-server:
+      path: /json/weather/**
+      serviceId: msa-wr-weather-data-server
