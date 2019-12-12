@@ -31,7 +31,7 @@
 
 ### 这里的做法
 
- 	在`msa-wr-report-server`中，引入 Hystrix 。
+​	在`msa-wr-report-server`中，引入 Hystrix 。
 
 ​	在`msa-wr-report-server`中会通过`msa-wr-gateway`的 Zuul 来间接请求`msa-wr-city-data-server`和`msa-wr-weather-data-server`这两个微服务，使用 Hystrix 来对这两个微服务进行保护。同时，编写一个类`MsaDataServerClientFallback`，这个类会实现`MsaDataServerClient`这一微服务聚合接口，实现接口中的方法，当“熔断”发生后**暂时替代**正常接口中的方法执行。
 
