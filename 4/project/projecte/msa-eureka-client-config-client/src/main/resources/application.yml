@@ -1,0 +1,17 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: msa-eureka-client-config-client
+  cloud:
+    config:
+      # config server 的请求路径
+      uri: http://localhost:8888
+      # profile 需要参考“配置中心配置文件的命名规则”
+      # 这里将会读取到远程配置中心中的配置文件是 msa-eureka-client-config-client.dev.yml
+      profile: dev
+
+eureka:
+  client:
+    service-url.defaultZone: http://localhost:8761/eureka/

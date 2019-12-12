@@ -1,0 +1,18 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: msa-eureka-client-config-server
+  cloud:
+    config:
+      server:
+        git:
+          # 远程配置中心所在的 Git 仓库
+          uri: https://github.com/yysCyber/msa-weather-report-system
+          # 配置中心具体的目录
+          search-paths: 4/config-repo
+
+eureka:
+  client:
+    service-url.defaultZone: http://localhost:8761/eureka/
