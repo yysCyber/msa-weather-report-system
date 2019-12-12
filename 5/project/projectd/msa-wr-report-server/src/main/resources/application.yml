@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /
+
+spring:
+  thymeleaf:
+    cache: false
+  application:
+    name: msa-wr-report-server
+
+eureka:
+  client:
+    service-url.defaultZone: http://localhost:8761/eureka/
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+  # 启用“断路器”
+  hystrix:
+    enabled: true
