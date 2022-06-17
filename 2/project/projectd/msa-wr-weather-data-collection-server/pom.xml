@@ -19,7 +19,7 @@
 
     <properties>
         <spring-cloud.version>Greenwich.SR4</spring-cloud.version>
-        <fastjson.version>1.2.61</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
     </properties>
 
     <dependencyManagement>
